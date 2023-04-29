@@ -1,0 +1,10 @@
+# this is config file for creating pod without development which should not be used, saving it for reference
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posts
+spec:
+  containers:
+  - name: posts
+    image: chaitanya/posts:0.0.1
