@@ -1,27 +1,31 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const PostCreate = () => {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    await axios.post('http://localhost:4000/posts', {
-      title
-    })
+    await axios.post("http://posts.com/posts/create", {
+      title,
+    });
 
-    setTitle('')
-  }
+    setTitle("");
+  };
   return (
     <>
-     <h1>Create Post</h1>
+      <h1>Create Post</h1>
       <form onSubmit={handleSubmit} className={"py-3"}>
         <div className="form-group">
           <label>Title</label>
-          <br/>
-          <input value={title} onChange={(e) => setTitle(e.target.value)} className="form-control" />
-          <br/>
+          <br />
+          <input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="form-control"
+          />
+          <br />
         </div>
         <button className="btn btn-primary">Submit</button>
       </form>
