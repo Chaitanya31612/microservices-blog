@@ -1,22 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 
-const PostCreate = () => {
+const PostCreate = ({ fetchPosts }) => {
   const [title, setTitle] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setTitle("");
     await axios.post("http://posts.com/posts/create", {
       title,
     });
-
-    setTitle("");
+    fetchPosts();
   };
+
   return (
     <>
       <h1>Create Post</h1>
-      <form onSubmit={handleSubmit} className={"py-3"}>
+      <form onSubmit={(e) => handleSubmit(e, title)} className={"py-3"}>
         <div className="form-group">
           <label>Title</label>
           <br />

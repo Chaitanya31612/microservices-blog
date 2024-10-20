@@ -1,18 +1,30 @@
-import './App.css'
+import { useState, useEffect } from "react";
+import axios from "axios";
 import PostCreate from "./components/PostCreate.jsx";
 import PostList from "./components/PostList.jsx";
 
-function App() {
+import "./App.css";
+
+const App = () => {
+  const [posts, setPosts] = useState({});
+
+  const fetchPosts = async () => {
+    const res = await axios.get("http://posts.com/posts");
+    setPosts(res.data);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <div className="container py-5">
-      {/*<h1 style={{color: "red"}}>video number 13</h1>*/}
-      <PostCreate/>
-      <hr/>
+      <PostCreate fetchPosts={fetchPosts} />
+      <hr />
       <h1>Posts</h1>
-      <PostList/>
+      <PostList posts={posts} fetchPosts={fetchPosts} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
