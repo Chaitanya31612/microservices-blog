@@ -49,8 +49,12 @@ $(minikube ip)     posts.com
 4. Start the setup using skaffold:
 
   ```bash
-skaffold dev / skaffold dev --port-forward
+skaffold dev
 ```
+or
+  ```bash
+ skaffold dev --port-forward
+ ```
 
 
 Open your browser and go to http://posts.com to access the microservices blog application.
