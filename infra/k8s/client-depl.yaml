@@ -1,30 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: query-depl
+  name: client-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: query
+      app: client
   template:
     metadata:
       labels:
-        app: query
+        app: client
     spec:
       containers:
-      - name: query
-        image: chaitanya31/query
+      - name: client
+        image: chaitanya31/client
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: query-clusterip-srv
+  name: client-clusterip-srv
 spec:
   selector:
-    app: query
+    app: client
   ports:
-  - name: query
-    port: 4002
-    targetPort: 4002
+  - name: client
+    port: 3000
+    targetPort: 3000

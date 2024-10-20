@@ -13,11 +13,15 @@ app.use(morgan("dev"));
 // Storing posts in memory
 const posts = {};
 
+// app.get("/", (req, res) => {
+//   res.send("Hello from posts service");
+// });
+
 app.get("/posts", (req, res) => {
   res.send(posts);
 });
 
-app.post("/posts", async (req, res) => {
+app.post("/posts/create", async (req, res) => {
   const id = randomBytes(4).toString("hex");
   const { title } = req.body;
   posts[id] = {
